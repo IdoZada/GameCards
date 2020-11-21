@@ -41,7 +41,9 @@ public class WinnerActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * This function destroy the activity
+     */
     private void closeActivity() { finish();
     }
 }
