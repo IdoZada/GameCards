@@ -110,19 +110,24 @@ public class MainActivity extends AppCompatActivity {
     }
     /**
      * This function switch the screen activity
-     * from the main activity to winner activity
+     * from the main activity to winner activity/draw activity
      */
     private void moveToWinnerActivity() {
-        Intent myIntent = new Intent(MainActivity.this,WinnerActivity.class);
+        Intent intentWinner = new Intent(MainActivity.this,WinnerActivity.class);
+        Intent intentDraw = new Intent(MainActivity.this,DrawActivity.class);
         if (this.scorePlayerOne > this.scorePlayerTwo){
             //Pass the count to new activity, save the count in map object that contain key and primitiv types
-            myIntent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameOne.getText().toString());
-            myIntent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerOne);
+            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameOne.getText().toString());
+            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerOne);
+            startActivity(intentWinner);
+        }else if(this.scorePlayerOne < this.scorePlayerTwo){
+            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameTwo.getText().toString());
+            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerTwo);
+            startActivity(intentWinner);
         }else{
-            myIntent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameTwo.getText().toString());
-            myIntent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerTwo);
+            intentDraw.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE,scorePlayerOne);
+            startActivity(intentDraw);
         }
-        startActivity(myIntent);
         finish();
     }
     /**

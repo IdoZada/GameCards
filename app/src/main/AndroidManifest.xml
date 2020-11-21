@@ -18,14 +18,19 @@
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GameCards">
-        <activity android:name="com.example.warcardgame.WinnerActivity"
+        <activity android:name=".DrawActivity"
+            android:configChanges="orientation|screenLayout|screenSize|layoutDirection"
+            android:screenOrientation="sensorLandscape"
+            >
+        </activity>
+        <activity
+            android:name=".WinnerActivity"
             android:configChanges="orientation|screenLayout|screenSize|layoutDirection"
             android:screenOrientation="sensorLandscape">
             >
-
         </activity>
         <activity
-            android:name="com.example.warcardgame.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation|screenLayout|screenSize|layoutDirection"
             android:screenOrientation="sensorLandscape">
             <intent-filter>
