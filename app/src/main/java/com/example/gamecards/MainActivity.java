@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -107,15 +106,6 @@ public class MainActivity extends AppCompatActivity {
             main_LBL_score_two.setText("" + scorePlayerTwo);
         }
 
-    }
-
-    //Load image by id with Glide library
-    private void loadImageByResourceId(View imageView){
-        int resourceId = R.drawable.casino_table;
-        Glide
-                .with(this)
-                .load(resourceId)
-                .into((ImageView) imageView);
     }
 
     private ArrayList<Card> loadAllImages(){
