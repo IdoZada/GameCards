@@ -1,4 +1,4 @@
-package com.example.gamecards;
+package com.example.warcardgame;
 
 public class Card {
     private int resourceId;
