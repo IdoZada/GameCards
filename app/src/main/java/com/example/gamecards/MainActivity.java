@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Card> loadAllImages(){
         ArrayList<Card> packCards = new ArrayList<Card>();
-        String[] names  = new String[]{"poker_card_a","poker_card_b","poker_card_c","poker_card_d"};
+        String[] names  = new String[]{"img_poker_card_a","img_poker_card_b","img_poker_card_c","img_poker_card_d"};
         String imageName;
         int resourceId;
         for (int i = 0; i < 4; i++) {

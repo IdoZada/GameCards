@@ -5,23 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/casino_table"
+    android:background="@drawable/img_background"
     tools:context=".WinnerActivity"
     tools:ignore="MissingDefaultResource">
 
-
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:padding="10dp">
-
-
+        android:padding="25dp"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -35,174 +30,128 @@
                 android:padding="4dp"
                 android:text="The Winner is:"
                 android:textColor="@color/black"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/winner_IMG_cup"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:padding="4dp"
+                android:src="@drawable/img_cup">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/winner_LBL_playerName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Player Name"
+                android:textColor="@color/my_yellow_color"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/winner_IMG_cup"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:padding="4dp"
-                    android:src="@drawable/cup">
+            <ImageView
+                android:id="@+id/winner_IMG_cup2"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:padding="4dp"
+                android:src="@drawable/img_cup">
 
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
+            </ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="right"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="right"
+                android:padding="4dp"
+                android:text="With the score of:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/winner_LBL_playerName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Player Name"
-                    android:textColor="#FFEB3B"
-                    android:textSize="40sp"
-                    android:padding="4dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
+            <TextView
+                android:id="@+id/winner_LBL_score"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/winner_IMG_cup2"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:padding="4dp"
-                    android:src="@drawable/cup">
-
-                </ImageView>
-            </LinearLayout>
-
+                android:layout_weight="1.5"
+                android:text="Score"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:textColor="#FF9800"
+                android:textSize="30sp"
+                android:padding="4dp"
+                android:textStyle="bold"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                >
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="4dp"
-                    android:text="With the score of:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/winner_LBL_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Score"
-                    android:gravity="center"
-                    android:textColor="#FF5722"
-                    android:textSize="40sp"
-                    android:padding="4dp"
-                    android:textStyle="bold"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="15dp"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                >
                 <Button
                     android:id="@+id/winner_BTN_close"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#27041991"
-                    android:gravity="center"
                     android:text="Close"
+                    android:backgroundTint="@color/my_yellow_color"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:padding="4dp"
-                    android:textSize="20sp">
+                    android:textSize="25sp"
+                    >
+
                 </Button>
             </LinearLayout>
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
