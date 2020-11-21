@@ -22,11 +22,9 @@ public class WinnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner);
 
-
         winner_BTN_close = findViewById(R.id.winner_BTN_close);
         winner_LBL_playerName = findViewById(R.id.winner_LBL_playerName);
         winner_LBL_score = findViewById(R.id.winner_LBL_score);
-
 
         winner_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -121,7 +121,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/main_IMG_crown"
+                android:id="@+id/main_IMG_play_button"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
