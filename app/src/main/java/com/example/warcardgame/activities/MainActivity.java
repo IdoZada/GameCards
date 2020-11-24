@@ -1,13 +1,17 @@
-package com.example.warcardgame;
+package com.example.warcardgame.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.warcardgame.Card;
+import com.example.warcardgame.R;
+import com.example.warcardgame.utils.MyScreenUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -26,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        MyScreenUtils.hideSystemUI(this);
         setContentView(R.layout.activity_main);
 
         main_LBL_score_one = findViewById(R.id.main_LBL_score_one);

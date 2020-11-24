@@ -1,4 +1,4 @@
-package com.example.warcardgame;
+package com.example.warcardgame.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.warcardgame.R;
+import com.example.warcardgame.utils.MyScreenUtils;
 
 public class DrawActivity extends AppCompatActivity {
 
@@ -17,8 +20,7 @@ public class DrawActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        MyScreenUtils.hideSystemUI(this);
         setContentView(R.layout.activity_draw);
 
         draw_BTN_close = findViewById(R.id.draw_BTN_close);
