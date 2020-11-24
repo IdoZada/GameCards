@@ -1,7 +1,5 @@
 package com.example.warcardgame.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +9,7 @@ import com.example.warcardgame.R;
 import com.example.warcardgame.utils.MyScreenUtils;
 
 
-public class WinnerActivity extends AppCompatActivity {
+public class WinnerActivity extends Activity_Base {
 
     public static final String EXTRA_KEY_WINNER_NAME = "EXTRA_KEY_WINNER_NAME";
     public static final String EXTRA_KEY_WINNER_SCORE = "EXTRA_KEY_WINNER_SCORE";
@@ -22,7 +20,6 @@ public class WinnerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MyScreenUtils.hideSystemUI(this);
         setContentView(R.layout.activity_winner);
 
         winner_BTN_close = findViewById(R.id.winner_BTN_close);
@@ -32,7 +29,7 @@ public class WinnerActivity extends AppCompatActivity {
         winner_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeActivity();
+                MyScreenUtils.closeActivity(WinnerActivity.this);
             }
         });
 
@@ -44,9 +41,4 @@ public class WinnerActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * This function destroy the activity
-     */
-    private void closeActivity() { finish();
-    }
 }

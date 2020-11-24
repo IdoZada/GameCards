@@ -1,4 +1,4 @@
-package com.example.warcardgame;
+package com.example.warcardgame.objects;
 
 public class Player {
     private String name;

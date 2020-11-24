@@ -1,6 +1,5 @@
 package com.example.warcardgame.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,14 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.warcardgame.Card;
+import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.R;
 import com.example.warcardgame.utils.MyScreenUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity_Base {
     private TextView main_LBL_score_one;
     private ImageView main_IMG_card_one;
     private TextView main_LBL_score_two;
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MyScreenUtils.hideSystemUI(this);
         setContentView(R.layout.activity_main);
 
         main_LBL_score_one = findViewById(R.id.main_LBL_score_one);
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             intentDraw.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE,scorePlayerOne);
             startActivity(intentDraw);
         }
-        finish();
+        MyScreenUtils.closeActivity(this);
     }
     /**
      * This function compare between the value of 2 cards and

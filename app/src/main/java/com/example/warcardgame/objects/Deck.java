@@ -1,7 +1,6 @@
-package com.example.warcardgame;
+package com.example.warcardgame.objects;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Deck {
     private ArrayList<Card> deck;

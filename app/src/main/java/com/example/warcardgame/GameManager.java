@@ -1,5 +1,8 @@
 package com.example.warcardgame;
 
+import com.example.warcardgame.objects.Hand;
+import com.example.warcardgame.objects.Player;
+
 public class GameManager {
     Hand hand1 = new Hand();
     Hand hand2 = new Hand();

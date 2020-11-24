@@ -1,5 +1,6 @@
 package com.example.warcardgame.utils;
 
+import android.app.Activity;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,5 +25,15 @@ public class MyScreenUtils {
                         | View.SYSTEM_UI_FLAG_LOW_PROFILE
         );
     }
+
+    /**
+     * This function destroy the activity
+     * @param activity receive the activity to close
+     */
+    public static void closeActivity(AppCompatActivity activity) {
+        activity.finish();
+    }
+
+    //TODO Create method that allows to move between 2 activities
 
 }
