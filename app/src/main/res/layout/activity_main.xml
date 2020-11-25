@@ -101,7 +101,6 @@
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:visibility="invisible"
                         android:contentDescription="card one"
                         android:src="@drawable/img_club_ace" />
 
@@ -118,7 +117,6 @@
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:visibility="invisible"
                         android:contentDescription="card two"
                         android:src="@drawable/img_club_jack" />
 

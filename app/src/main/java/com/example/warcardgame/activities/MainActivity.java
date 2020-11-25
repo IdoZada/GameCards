@@ -1,23 +1,13 @@
 package com.example.warcardgame.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.warcardgame.GameManager;
-import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.R;
-import com.example.warcardgame.objects.Deck;
-import com.example.warcardgame.objects.Hand;
 import com.example.warcardgame.objects.RetrieveData;
-import com.example.warcardgame.utils.MyScreenUtils;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class MainActivity extends Activity_Base {
     private GameManager game = new GameManager();
@@ -26,7 +16,6 @@ public class MainActivity extends Activity_Base {
     private TextView main_LBL_score_two;
     private ImageView main_IMG_card_two;
     private ImageView main_IMG_play_button;
-    private ArrayList<Card> packCards = new ArrayList<Card>();
     private TextView main_LBL_nameOne;
     private TextView main_LBL_nameTwo;
     private int scorePlayerOne = 0;
@@ -53,29 +42,29 @@ public class MainActivity extends Activity_Base {
                 RetrieveData retrieveData = game.gameStepCard();
                 main_LBL_score_one.setText("" + retrieveData.getPlayer1Score());
                 main_LBL_score_two.setText("" + retrieveData.getPlayer2Score());
+
+                //TODO Fix blinking image glide
                 Glide
                         .with(MainActivity.this)
-                        .load("@drawable/" + retrieveData.getPlayer1ImgIconName())
+                        .load(getResourceId(retrieveData.getPlayer1ImgIconName()))
                         .into(main_IMG_card_one);
+
+                //TODO Fix blinking image glide
                 Glide
                         .with(MainActivity.this)
-                        .load("@drawable/" + retrieveData.getPlayer2ImgIconName())
+                        .load(getResourceId(retrieveData.getPlayer2ImgIconName()))
+                        .skipMemoryCache(true)
                         .into(main_IMG_card_two);
+
+
             }
         });
 
-        //packCards = loadAllImagesOfCards();
 
-
-        /*Deck deck = new Deck();
-        Card card = deck.getCardFromDeck(0);
-        Log.d("test", " "+ card.getCardSuit() + " " + card.getCardRank()
-                + " " + card.getValue() + " " + card.getImgIconName());
-
-        Hand hand1 = new Hand(deck);
-        hand1.splitDeckToHand(0,26);
-        hand1.getCardsInHand();*/
-
+    }
+    //Get the resource id of image
+    private int getResourceId(String imageName){
+        return this.getResources().getIdentifier(imageName,"drawable",this.getPackageName());
     }
 
     //TODO Create func that allow move to another activity

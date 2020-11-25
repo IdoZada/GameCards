@@ -1,5 +1,7 @@
 package com.example.warcardgame;
 
+import android.util.Log;
+
 import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.objects.Deck;
 import com.example.warcardgame.objects.Hand;
@@ -27,17 +29,14 @@ public class GameManager {
     }
 
     public RetrieveData gameStepCard(){
-        //TODO getTwoCardsFromPlayers
         Card[] cards = getTwoCardsFromPlayers();
-        //TODO compareAndUpdateScore
         compareAndUpdateScore(cards);
-        //TODO Update the Retrive object
-
+        Log.d("test",  " " + cards[0].getImgIconName());
+        Log.d("test",  " " + cards[1].getImgIconName());
         RetrieveData retrieveData = new RetrieveData(cards[0].getImgIconName(),
                 cards[1].getImgIconName(),
                 getScore(player1),
                 getScore(player2));
-        //TODO return RetriveData object
         return retrieveData;
     }
 
