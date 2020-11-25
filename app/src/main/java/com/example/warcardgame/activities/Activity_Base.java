@@ -16,13 +16,13 @@ public class Activity_Base extends AppCompatActivity {
         MyScreenUtils.hideSystemUI(this);
     }
 
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             MyScreenUtils.hideSystemUI(this);
         }
-    }
+    }*/
 
     protected boolean isDoubleBackPressToClose = false;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
@@ -43,5 +43,13 @@ public class Activity_Base extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    /**
+     * This function destroy the activity
+     * @param activity receive the activity to close
+     */
+    public static void closeActivity(AppCompatActivity activity) {
+        activity.finish();
     }
 }

@@ -29,7 +29,7 @@ public class WinnerActivity extends Activity_Base {
         winner_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyScreenUtils.closeActivity(WinnerActivity.this);
+                closeActivity(WinnerActivity.this);
             }
         });
 

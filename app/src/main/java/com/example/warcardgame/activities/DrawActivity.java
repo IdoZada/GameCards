@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.warcardgame.R;
-import com.example.warcardgame.utils.MyScreenUtils;
 
 public class DrawActivity extends Activity_Base {
 
@@ -25,7 +23,7 @@ public class DrawActivity extends Activity_Base {
         draw_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyScreenUtils.closeActivity(DrawActivity.this);
+                closeActivity(DrawActivity.this);
             }
         });
 

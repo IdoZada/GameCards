@@ -26,13 +26,6 @@ public class MyScreenUtils {
         );
     }
 
-    /**
-     * This function destroy the activity
-     * @param activity receive the activity to close
-     */
-    public static void closeActivity(AppCompatActivity activity) {
-        activity.finish();
-    }
 
     //TODO Create method that allows to move between 2 activities
 

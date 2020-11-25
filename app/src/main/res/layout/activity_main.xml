@@ -103,7 +103,7 @@
                         android:layout_gravity="center"
                         android:visibility="invisible"
                         android:contentDescription="card one"
-                        android:src="@drawable/img_poker_card_b4" />
+                        android:src="@drawable/img_club_ace" />
 
                 </LinearLayout>
 
@@ -120,7 +120,7 @@
                         android:layout_gravity="center"
                         android:visibility="invisible"
                         android:contentDescription="card two"
-                        android:src="@drawable/img_poker_card_a14" />
+                        android:src="@drawable/img_club_jack" />
 
                 </LinearLayout>
 

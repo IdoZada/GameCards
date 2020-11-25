@@ -1,29 +1,61 @@
 package com.example.warcardgame.objects;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
+    private CardSuit cardSuit;
+    private CardRank cardRank;
     private ArrayList<Card> deck;
 
-    /*public static void createNewDeck(){
-        String imageName;
-        int resourceId;
-        String[] cards_name  = new String[]{"img_poker_card_a","img_poker_card_b","img_poker_card_c","img_poker_card_d"};
-        ArrayList<Card> packCards = new ArrayList<Card>();
-        for (int i = 0; i < 4; i++) {
-            for (int j = 2; j <= 14; j++) {
-                imageName = "@drawable/" + cards_name[i] + "" + j;
-                resourceId = getResourceId(imageName);
-                Card card = new Card(resourceId , j);
-                packCards.add(card);
+    public Deck() {
+        this.deck = new ArrayList<Card>();
+        createNewDeck();
+    }
+
+    public int deckSize(){
+        return deck.size();
+    }
+
+    public CardSuit getCardSuit() {
+        return cardSuit;
+    }
+
+    public void setCardSuit(CardSuit cardSuit) {
+        this.cardSuit = cardSuit;
+    }
+
+    public CardRank getCardRank() {
+        return cardRank;
+    }
+
+    public void setCardRank(CardRank cardRank) {
+        this.cardRank = cardRank;
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public Card getCardFromDeck(int index){
+        return deck.get(index);
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
+    public void createNewDeck(){
+        for (CardSuit cardSuit : CardSuit.values()) {
+            for (CardRank cardRank : CardRank.values()) {
+                Card card = new Card(cardSuit, cardRank);
+                deck.add( new Card(cardSuit, cardRank));
             }
         }
         //Shuffling the cards
-        Collections.shuffle(packCards);
+        Collections.shuffle(deck);
     }
-
-    private int getResourceId(String imageName){
-        return this.getResources().getIdentifier(imageName,null,this.getPackageName());
-    }*/
 }
 

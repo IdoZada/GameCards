@@ -7,14 +7,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.warcardgame.GameManager;
 import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.R;
+import com.example.warcardgame.objects.Deck;
+import com.example.warcardgame.objects.Hand;
+import com.example.warcardgame.objects.RetrieveData;
 import com.example.warcardgame.utils.MyScreenUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainActivity extends Activity_Base {
+    private GameManager game = new GameManager();
     private TextView main_LBL_score_one;
     private ImageView main_IMG_card_one;
     private TextView main_LBL_score_two;
@@ -39,114 +45,43 @@ public class MainActivity extends Activity_Base {
         main_LBL_nameOne = findViewById((R.id.main_LBL_nameOne));
         main_LBL_nameTwo = findViewById((R.id.main_LBL_nameTwo));
 
-        packCards = loadAllImagesOfCards();
+
 
         main_IMG_play_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(packCards.size() < 2){
-                    moveToWinnerActivity();
-                } else{
-                    Card[] twoCards = getTwoCardsFromPack(packCards);
-                    Log.d("cardPack", "Remaining cards in pack: " + packCards.size());
-                    updateCardsView(twoCards);
-                    updateScore(twoCards);
-                }
+                RetrieveData retrieveData = game.gameStepCard();
+                main_LBL_score_one.setText("" + retrieveData.getPlayer1Score());
+                main_LBL_score_two.setText("" + retrieveData.getPlayer2Score());
+                Glide
+                        .with(MainActivity.this)
+                        .load("@drawable/" + retrieveData.getPlayer1ImgIconName())
+                        .into(main_IMG_card_one);
+                Glide
+                        .with(MainActivity.this)
+                        .load("@drawable/" + retrieveData.getPlayer2ImgIconName())
+                        .into(main_IMG_card_two);
             }
         });
 
+        //packCards = loadAllImagesOfCards();
+
+
+        /*Deck deck = new Deck();
+        Card card = deck.getCardFromDeck(0);
+        Log.d("test", " "+ card.getCardSuit() + " " + card.getCardRank()
+                + " " + card.getValue() + " " + card.getImgIconName());
+
+        Hand hand1 = new Hand(deck);
+        hand1.splitDeckToHand(0,26);
+        hand1.getCardsInHand();*/
+
     }
-    /**
-     * This function loads all images of cards from the drawable folder and save
-     * resource id + value card
-     * @return Array list of cards
-     */
-    private ArrayList<Card> loadAllImagesOfCards(){
-        String imageName;
-        int resourceId;
-        String[] cards_name  = new String[]{"img_poker_card_a","img_poker_card_b","img_poker_card_c","img_poker_card_d"};
-        ArrayList<Card> packCards = new ArrayList<Card>();
-        for (int i = 0; i < 4; i++) {
-            for (int j = 2; j <= 14; j++) {
-                imageName = "@drawable/" + cards_name[i] + "" + j;
-                resourceId = getResourceId(imageName);
-                Card card = new Card(resourceId , j);
-                packCards.add(card);
-            }
-        }
-        //Shuffling the cards
-        Collections.shuffle(packCards);
-        return packCards;
-    }
-    /**
-     * This function get resource id of image
-     * @param imageName The name of image in drawable folder
-     * @return int The associated resource identifier. Returns 0 if no such resource was found.
-     * (0 is not a valid resource ID.)
-     */
-    private int getResourceId(String imageName){
-        return this.getResources().getIdentifier(imageName,null,this.getPackageName());
-    }
-    /**
-     * This function get two cards from the pack (52 cards at the begining), initialize
-     * and remove them from the pack
-     * @param packCards Array list of cards
-     * @return Array of two cards
-     */
-    private Card[] getTwoCardsFromPack(ArrayList<Card> packCards) {
-        Card[] cards = new Card[2];
-        for (int i = 0; i < 2; i++) {
-            cards[i] = new Card();
-            cards[i].setResourceId(packCards.get(0).getResourceId());
-            cards[i].setValue(packCards.get(0).getValue());
-            packCards.remove(0);
-        }
-        return cards;
-    }
-    /**
-     * This function update cards view in the main activity
-     * @param twoCards Array of 2 cards
-     */
-    private void updateCardsView(Card[] twoCards){
-        main_IMG_card_one.setImageResource(twoCards[0].getResourceId());
-        main_IMG_card_one.setVisibility(View.VISIBLE);
-        main_IMG_card_two.setImageResource(twoCards[1].getResourceId());
-        main_IMG_card_two.setVisibility(View.VISIBLE);
-    }
-    /**
-     * This function switch the screen activity
-     * from the main activity to winner activity/draw activity
-     */
-    private void moveToWinnerActivity() {
-        Intent intentWinner = new Intent(MainActivity.this,WinnerActivity.class);
-        Intent intentDraw = new Intent(MainActivity.this,DrawActivity.class);
-        if (this.scorePlayerOne > this.scorePlayerTwo){
-            //Pass the count to new activity, save the count in map object that contain key and primitiv types
-            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameOne.getText().toString());
-            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerOne);
-            startActivity(intentWinner);
-        }else if(this.scorePlayerOne < this.scorePlayerTwo){
-            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, main_LBL_nameTwo.getText().toString());
-            intentWinner.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, scorePlayerTwo);
-            startActivity(intentWinner);
-        }else{
-            intentDraw.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE,scorePlayerOne);
-            startActivity(intentDraw);
-        }
-        MyScreenUtils.closeActivity(this);
-    }
-    /**
-     * This function compare between the value of 2 cards and
-     * update the score of the players in the main activity
-     * @param twoCards Array of 2 cards
-     */
-    private void updateScore(Card[] twoCards) {
-        if(twoCards[0].getValue() > twoCards[1].getValue()){
-            scorePlayerOne += 1;
-            main_LBL_score_one.setText("" + scorePlayerOne);
-        }else if(twoCards[0].getValue() < twoCards[1].getValue()) {
-            scorePlayerTwo += 1;
-            main_LBL_score_two.setText("" + scorePlayerTwo);
-        }
-    }
+
+    //TODO Create func that allow move to another activity
+
+    //TODO Set score TextView
+
+    //TODO Set card ImageView
+
 }
