@@ -102,7 +102,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:contentDescription="card one"
-                        android:src="@drawable/img_club_ace" />
+                        />
 
                 </LinearLayout>
 
@@ -118,7 +118,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:contentDescription="card two"
-                        android:src="@drawable/img_club_jack" />
+                        />
 
                 </LinearLayout>
 

@@ -1,11 +1,18 @@
 package com.example.warcardgame.activities;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.warcardgame.objects.MoveActivity;
+import com.example.warcardgame.objects.RetrieveData;
 import com.example.warcardgame.utils.MyScreenUtils;
 
 public class Activity_Base extends AppCompatActivity {
@@ -51,5 +58,33 @@ public class Activity_Base extends AppCompatActivity {
      */
     public static void closeActivity(AppCompatActivity activity) {
         activity.finish();
+    }
+
+    //TODO Create func that allow move to another activity
+    public static Intent moveBetweenActivity(Context context, Class newActivity , RetrieveData retrieveData, MoveActivity moveActivity){
+        Intent intent = new Intent(context, newActivity);
+        switch (moveActivity){
+            case WINNER:
+                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, retrieveData.getWinner().getPlayer().getName());
+                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, retrieveData.getWinner().getPlayer().getScore());
+                break;
+            case DRAW:
+                intent.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE, retrieveData.getWinner().getPlayer().getScore());
+                break;
+            default:
+                break;
+        }
+        return intent;
+    }
+
+    public static void glide(Context activity, String imageName, ImageView view){
+        Glide
+                .with(activity)
+                .load(getResourceId(imageName,activity))
+                .into(view);
+    }
+
+    public static int getResourceId(String imageName,Context activity){
+        return activity.getResources().getIdentifier(imageName,"drawable",activity.getPackageName());
     }
 }

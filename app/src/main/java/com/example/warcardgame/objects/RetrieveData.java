@@ -5,9 +5,14 @@ public class RetrieveData {
     private String player2ImgIconName;
     private int player1Score;
     private int player2Score;
+    private Winner winner = null;
 
     public RetrieveData() {
 
+    }
+
+    public RetrieveData(Winner winner) {
+        this.winner = winner;
     }
 
     public RetrieveData(String player1ImgIconName, String player2ImgIconName, int player1Score, int player2Score) {
@@ -32,5 +37,15 @@ public class RetrieveData {
     public int getPlayer2Score() {
         return player2Score;
     }
+
+
+    public Winner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Winner winner) {
+        this.winner = winner;
+    }
+
 
 }

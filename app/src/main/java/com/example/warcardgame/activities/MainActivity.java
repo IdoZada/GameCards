@@ -1,16 +1,19 @@
 package com.example.warcardgame.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import com.example.warcardgame.GameManager;
 import com.example.warcardgame.R;
+import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.RetrieveData;
 
 public class MainActivity extends Activity_Base {
+
     private GameManager game = new GameManager();
+    private RetrieveData retrieveData;
     private TextView main_LBL_score_one;
     private ImageView main_IMG_card_one;
     private TextView main_LBL_score_two;
@@ -34,43 +37,32 @@ public class MainActivity extends Activity_Base {
         main_LBL_nameOne = findViewById((R.id.main_LBL_nameOne));
         main_LBL_nameTwo = findViewById((R.id.main_LBL_nameTwo));
 
-
-
         main_IMG_play_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RetrieveData retrieveData = game.gameStepCard();
-                main_LBL_score_one.setText("" + retrieveData.getPlayer1Score());
-                main_LBL_score_two.setText("" + retrieveData.getPlayer2Score());
-
-                //TODO Fix blinking image glide
-                Glide
-                        .with(MainActivity.this)
-                        .load(getResourceId(retrieveData.getPlayer1ImgIconName()))
-                        .into(main_IMG_card_one);
-
-                //TODO Fix blinking image glide
-                Glide
-                        .with(MainActivity.this)
-                        .load(getResourceId(retrieveData.getPlayer2ImgIconName()))
-                        .skipMemoryCache(true)
-                        .into(main_IMG_card_two);
-
-
+                displayManagerActivity();
             }
         });
-
-
     }
-    //Get the resource id of image
-    private int getResourceId(String imageName){
-        return this.getResources().getIdentifier(imageName,"drawable",this.getPackageName());
+    private void displayManagerActivity(){
+        retrieveData = game.gameStep();
+        if(retrieveData.getWinner() == null){
+            main_LBL_score_one.setText("" + retrieveData.getPlayer1Score());
+            main_LBL_score_two.setText("" + retrieveData.getPlayer2Score());
+
+            //TODO Fix blinking image glide
+            glide(MainActivity.this, retrieveData.getPlayer1ImgIconName(),main_IMG_card_one);
+            glide(MainActivity.this, retrieveData.getPlayer2ImgIconName(),main_IMG_card_two);
+
+        }else{
+            Intent intent;
+            if(retrieveData.getWinner().getMoveActivity() == MoveActivity.WINNER) {
+                intent = moveBetweenActivity(MainActivity.this, WinnerActivity.class, retrieveData, MoveActivity.WINNER);
+            }else{
+                intent = moveBetweenActivity(MainActivity.this, DrawActivity.class, retrieveData, MoveActivity.DRAW);
+            }
+            startActivity(intent);
+            closeActivity(MainActivity.this);
+        }
     }
-
-    //TODO Create func that allow move to another activity
-
-    //TODO Set score TextView
-
-    //TODO Set card ImageView
-
 }

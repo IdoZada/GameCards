@@ -7,11 +7,12 @@ import com.example.warcardgame.objects.Deck;
 import com.example.warcardgame.objects.Hand;
 import com.example.warcardgame.objects.Player;
 import com.example.warcardgame.objects.RetrieveData;
+import com.example.warcardgame.objects.Winner;
 
 public class GameManager {
     private Player player1;
     private Player player2;
-
+    private Winner winner;
 
     public GameManager() {
         initGame();
@@ -28,16 +29,21 @@ public class GameManager {
 
     }
 
-    public RetrieveData gameStepCard(){
-        Card[] cards = getTwoCardsFromPlayers();
-        compareAndUpdateScore(cards);
-        Log.d("test",  " " + cards[0].getImgIconName());
-        Log.d("test",  " " + cards[1].getImgIconName());
-        RetrieveData retrieveData = new RetrieveData(cards[0].getImgIconName(),
-                cards[1].getImgIconName(),
-                getScore(player1),
-                getScore(player2));
-        return retrieveData;
+    public RetrieveData gameStep(){
+        if(!player1.getHand().isEmpty()){
+            Card[] cards = getTwoCardsFromPlayers();
+            Log.d("test",  " " + player1.getHand().getCardsInHand().size());
+            compareAndUpdateScore(cards);
+            RetrieveData retrieveData = new RetrieveData(cards[0].getImgIconName(),
+                    cards[1].getImgIconName(),
+                    getScore(player1),
+                    getScore(player2));
+            return retrieveData;
+        }else {
+            winner = checkWinner();
+            RetrieveData retrieveData = new RetrieveData(winner);
+            return retrieveData;
+        }
     }
 
 
@@ -61,9 +67,16 @@ public class GameManager {
             player2.setScore(1);
     }
 
-
-
-
-
+    public Winner checkWinner(){
+        //Player 1 winner
+        if(player1.getScore() > player2.getScore()){
+            return new Winner(player1);
+            //Player 2 winner
+        }else if(player1.getScore() < player2.getScore()){
+            return new Winner(player2);
+        //Draw
+        }else
+            return new Winner(player1,player2);
+    }
 
 }
