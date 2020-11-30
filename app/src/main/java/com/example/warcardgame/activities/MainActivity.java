@@ -10,8 +10,12 @@ import com.example.warcardgame.R;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.RetrieveData;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends Activity_Base {
 
+    private static final long DELAY = 2000;
     private GameManager game = new GameManager();
     private RetrieveData retrieveData;
     private TextView main_LBL_score_one;
@@ -19,10 +23,7 @@ public class MainActivity extends Activity_Base {
     private TextView main_LBL_score_two;
     private ImageView main_IMG_card_two;
     private ImageView main_IMG_play_button;
-    private TextView main_LBL_nameOne;
-    private TextView main_LBL_nameTwo;
-    private int scorePlayerOne = 0;
-    private int scorePlayerTwo = 0;
+    private Timer carousalTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +35,51 @@ public class MainActivity extends Activity_Base {
         main_LBL_score_two = findViewById(R.id.main_LBL_score_two);
         main_IMG_card_two = findViewById(R.id.main_IMG_card_two);
         main_IMG_play_button = findViewById((R.id.main_IMG_play_button));
-        main_LBL_nameOne = findViewById((R.id.main_LBL_nameOne));
-        main_LBL_nameTwo = findViewById((R.id.main_LBL_nameTwo));
+
+        glide(MainActivity.this, "img_deck",main_IMG_card_one);
+        glide(MainActivity.this, "img_deck",main_IMG_card_two);
 
         main_IMG_play_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayManagerActivity();
+                onStart();
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startGame();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopGame();
+    }
+
+
+    private void startGame() {
+        carousalTimer = new Timer();
+        carousalTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        displayManagerActivity();
+                    }
+                });
+            }
+        }, 0, DELAY);
+    }
+
+    private void stopGame() {
+        carousalTimer.cancel();
+    }
+
+
     private void displayManagerActivity(){
         retrieveData = game.gameStep();
         if(retrieveData.getWinner() == null){
@@ -61,6 +97,7 @@ public class MainActivity extends Activity_Base {
             }else{
                 intent = moveBetweenActivity(MainActivity.this, DrawActivity.class, retrieveData, MoveActivity.DRAW);
             }
+            onStop();
             startActivity(intent);
             closeActivity(MainActivity.this);
         }
