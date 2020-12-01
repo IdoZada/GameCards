@@ -1,15 +1,12 @@
 package com.example.warcardgame.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.RetrieveData;
@@ -23,13 +20,13 @@ public class Activity_Base extends AppCompatActivity {
         MyScreenUtils.hideSystemUI(this);
     }
 
-    /*@Override
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             MyScreenUtils.hideSystemUI(this);
         }
-    }*/
+    }
 
     protected boolean isDoubleBackPressToClose = false;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
