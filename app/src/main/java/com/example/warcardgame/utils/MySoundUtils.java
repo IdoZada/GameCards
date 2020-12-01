@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 
 public class MySoundUtils {
-    private MediaPlayer mp = new MediaPlayer();
+    private MediaPlayer mp;
     private int rawId;
 
     public MySoundUtils() {
