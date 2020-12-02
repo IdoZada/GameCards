@@ -1,209 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/main_IMG_backgroung"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
-    >
+    tools:context=".activities.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/img_background"
-        android:scaleType="fitXY"
-        >
+  <ImageView
+      android:id="@+id/main_IMG_deck_background"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:src="@drawable/img_deck_table"
+      android:scaleType="fitXY">
 
-    </ImageView>
+  </ImageView>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="17dp"
+      android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:padding="17dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/main_LBL_score_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/main_IMG_boy"
-                    android:layout_centerInParent="true"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="60sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/main_IMG_boy"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="40dp"
-                    android:src="@drawable/img_avatar_boy" />
-
-                <TextView
-                    android:id="@+id/main_LBL_nameOne"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/main_IMG_boy"
-                    android:layout_centerHorizontal="true"
-                    android:text="Ido"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-
-                    />
-            </RelativeLayout>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
 
 
-        </LinearLayout>
+      </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="2"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/main_LBL_round"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <ProgressBar
-                    android:id="@+id/main_PRB_progressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:minHeight="50dp"
-                    android:minWidth="200dp"
-                    android:layout_weight="3"
-                    android:progress="0"
-                    android:max="26"
-                    >
-                </ProgressBar>
-
-                <TextView
-                    android:id="@+id/main_LBL_round"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:text=""
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="17dp">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/main_IMG_card_one"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:contentDescription="card one"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/main_IMG_card_two"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:contentDescription="card two"
-                        />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/main_IMG_play_button"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:src="@drawable/img_play_button">
-            </ImageView>
+            android:fontFamily="@font/font_thebomb"
+            android:text="War Game"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="50sp">
+        </TextView>
 
 
 
-        </LinearLayout>
+
+
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            >
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+          <Button
+              android:id="@+id/main_BTN_start_game"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:text="Start Game"
+              android:layout_marginHorizontal="230dp"
+              android:fontFamily="@font/font_thebomb"
+              android:backgroundTint="@color/my_yellow_color"
+              android:layout_weight="1"
+              android:layout_gravity="center"
+              android:textAllCaps="false"
+              android:textColor="@color/black"
+              android:textSize="15sp"
+              >
 
-                <TextView
-                    android:id="@+id/main_LBL_score_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:layout_centerInParent="true"
-                    android:layout_above="@+id/main_IMG_girl"
-                    android:textColor="@color/black"
-                    android:textSize="60sp"
-                    android:textStyle="bold" />
+          </Button>
+          <Button
+              android:id="@+id/game_BTN_top_ten"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:text="Top 10"
+              android:layout_marginHorizontal="230dp"
+              android:fontFamily="@font/font_thebomb"
+              android:backgroundTint="@color/my_yellow_color"
+              android:layout_weight="1"
+              android:layout_gravity="center"
+              android:textAllCaps="false"
+              android:textColor="@color/black"
+              android:textSize="15sp"
+              >
 
-                <ImageView
-                    android:id="@+id/main_IMG_girl"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="40dp"
-                    android:src="@drawable/img_avatar_girl" />
+          </Button>
+          <Button
+              android:id="@+id/game_BTN_exit"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:text="Exit"
+              android:layout_marginHorizontal="230dp"
+              android:fontFamily="@font/font_thebomb"
+              android:backgroundTint="@color/my_yellow_color"
+              android:layout_weight="1"
+              android:layout_gravity="center"
+              android:textAllCaps="false"
+              android:textColor="@color/black"
+              android:textSize="15sp"
+              >
 
-                <TextView
-                    android:id="@+id/main_LBL_nameTwo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/main_IMG_girl"
-                    android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:text="Romi"
-                    />
-            </RelativeLayout>
+          </Button>
+
+
+
         </LinearLayout>
+
+
+
+
+      </LinearLayout>
+
+
+
+
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
+      </RelativeLayout>
+    </LinearLayout>
+  </LinearLayout>
+
+
+
 </RelativeLayout>
