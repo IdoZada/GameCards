@@ -15,7 +15,6 @@ import com.example.warcardgame.R;
 public class Fragment_list extends Fragment {
 
     private RecyclerView recyclerView;
-    private TextView list_LBL_title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class Fragment_list extends Fragment {
     }
 
     private void findViews(View view) {
-        //recyclerView = view.findViewById(R.id.recyclerView);
-        list_LBL_title = view.findViewById(R.id.list_LBL_title);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        //list_LBL_title = view.findViewById(R.id.list_LBL_title);
     }
 }

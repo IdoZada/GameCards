@@ -9,9 +9,9 @@
     tools:ignore="MissingDefaultResource">
 
     <ImageView
+        android:id="@+id/topTen_IMG_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/img_deck_table"
         android:scaleType="fitXY"
         >
 

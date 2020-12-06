@@ -15,18 +15,42 @@ public class GameManager {
     private Winner winner;
 
     public GameManager() {
-        initGame();
+
     }
 
-    public void initGame(){
+    public void initGame(String playerNameOne,String playerNameTwo){
         Deck deck = new Deck();
         Hand hand1 = new Hand(deck);
         hand1.splitDeckToHand(0,26);
         Hand hand2 = new Hand(deck);
         hand2.splitDeckToHand(26,52);
-        player1 = new Player("Ido",hand1);
-        player2 = new Player("Romi",hand2);
+        player1 = new Player(playerNameOne,hand1);
+        player2 = new Player(playerNameTwo,hand2);
 
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
+    public Winner getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Winner winner) {
+        this.winner = winner;
     }
 
     public RetrieveData gameStep(){
@@ -36,8 +60,8 @@ public class GameManager {
             compareAndUpdateScore(cards);
             RetrieveData retrieveData = new RetrieveData(cards[0].getImgIconName(),
                     cards[1].getImgIconName(),
-                    getScore(player1),
-                    getScore(player2));
+                    player1,
+                    player2);
             return retrieveData;
         }else {
             winner = checkWinner();
@@ -54,10 +78,6 @@ public class GameManager {
         cards[1] = player2.getHand().getCardFromHand(0);
         player2.getHand().getCardsInHand().remove(0);
         return cards;
-    }
-
-    public int getScore(Player player){
-        return player.getScore();
     }
 
     public void compareAndUpdateScore(Card[] cards){

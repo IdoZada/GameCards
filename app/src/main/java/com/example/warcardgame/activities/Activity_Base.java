@@ -3,6 +3,7 @@ package com.example.warcardgame.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -62,12 +63,16 @@ public class Activity_Base extends AppCompatActivity {
         Intent intent = new Intent(context, newActivity);
         switch (moveActivity){
             case WINNER:
+                Log.d("aaaaaaaaaaaa", "moveBetweenActivity: " + retrieveData.getWinner().getPlayer().getName());
                 intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, retrieveData.getWinner().getPlayer().getName());
                 intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, retrieveData.getWinner().getPlayer().getScore());
                 break;
             case DRAW:
                 intent.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE, retrieveData.getWinner().getPlayer().getScore());
                 break;
+            case GAME:
+                intent.putExtra(GameActivity.EXTRA_KEY_GAME_PLAYER_NAME_ONE, retrieveData.getPlayer1().getName());
+                intent.putExtra(GameActivity.EXTRA_KEY_GAME_PLAYER_NAME_TWO, retrieveData.getPlayer2().getName());
             default:
                 break;
         }

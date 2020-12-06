@@ -1,9 +1,13 @@
 package com.example.warcardgame.objects;
 
+import android.location.Location;
+
 public class Winner {
     private Player player;
     private Player player2;
     private MoveActivity moveActivity;
+    //location
+    //date
 
 
     public Winner() {

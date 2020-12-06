@@ -11,62 +11,76 @@
       android:id="@+id/main_IMG_deck_background"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:src="@drawable/img_deck_table"
-      android:scaleType="fitXY">
+      android:scaleType="fitXY"
+      android:src="@drawable/img_deck_table">
 
   </ImageView>
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="17dp"
-      android:orientation="horizontal">
+      android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        >
-
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
-
-
-      </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="2"
         android:orientation="vertical">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_weight="2"
+          android:layout_weight="1"
           android:orientation="vertical">
 
         <TextView
-            android:id="@+id/main_LBL_round"
+            android:id="@+id/main_LBL_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
             android:fontFamily="@font/font_thebomb"
+            android:gravity="center"
             android:text="War Game"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="50sp">
-        </TextView>
+            android:textSize="40sp"
+            android:textStyle="bold"></TextView>
 
 
+      </LinearLayout>
 
 
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginHorizontal="200dp"
+          android:layout_weight="1"
+          android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/main_EDT_playerName1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/button_round"
+            android:fontFamily="@font/font_thebomb"
+            android:hint="@string/name_hint_one"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/main_EDT_playerName2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/button_round"
+            android:fontFamily="@font/font_thebomb"
+            android:hint="@string/name_hint_two"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"></EditText>
 
 
       </LinearLayout>
@@ -87,81 +101,63 @@
               android:id="@+id/main_BTN_start_game"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:text="Start Game"
-              android:layout_marginHorizontal="230dp"
-              android:fontFamily="@font/font_thebomb"
-              android:backgroundTint="@color/my_yellow_color"
-              android:layout_weight="1"
               android:layout_gravity="center"
+              android:layout_marginHorizontal="230dp"
+              android:layout_weight="1"
+              android:backgroundTint="@color/my_yellow_color"
+              android:fontFamily="@font/font_thebomb"
+              android:text="Start Game"
               android:textAllCaps="false"
               android:textColor="@color/black"
-              android:textSize="15sp"
-              >
+              android:textSize="15sp">
 
           </Button>
+
           <Button
               android:id="@+id/game_BTN_top_ten"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:text="Top 10"
-              android:layout_marginHorizontal="230dp"
-              android:fontFamily="@font/font_thebomb"
-              android:backgroundTint="@color/my_yellow_color"
-              android:layout_weight="1"
               android:layout_gravity="center"
+              android:layout_marginHorizontal="230dp"
+              android:layout_weight="1"
+              android:backgroundTint="@color/my_yellow_color"
+              android:fontFamily="@font/font_thebomb"
+              android:text="Top 10"
               android:textAllCaps="false"
               android:textColor="@color/black"
-              android:textSize="15sp"
-              >
+              android:textSize="15sp">
 
           </Button>
+
           <Button
               android:id="@+id/game_BTN_exit"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:text="Exit"
-              android:layout_marginHorizontal="230dp"
-              android:fontFamily="@font/font_thebomb"
-              android:backgroundTint="@color/my_yellow_color"
-              android:layout_weight="1"
               android:layout_gravity="center"
+              android:layout_marginHorizontal="230dp"
+              android:layout_weight="1"
+              android:backgroundTint="@color/my_yellow_color"
+              android:fontFamily="@font/font_thebomb"
+              android:text="Exit"
               android:textAllCaps="false"
               android:textColor="@color/black"
-              android:textSize="15sp"
-              >
+              android:textSize="15sp">
 
           </Button>
-
 
 
         </LinearLayout>
 
 
-
-
       </LinearLayout>
 
-
-
-
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        >
-
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
-
-
-      </RelativeLayout>
-    </LinearLayout>
   </LinearLayout>
+
+
+  
+
 
 
 

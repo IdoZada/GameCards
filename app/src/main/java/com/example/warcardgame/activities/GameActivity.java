@@ -19,6 +19,8 @@ import java.util.TimerTask;
 public class GameActivity extends Activity_Base {
 
     private static final long DELAY = 1000;
+    public static final String EXTRA_KEY_GAME_PLAYER_NAME_ONE = "EXTRA_KEY_GAME_PLAYER_NAME_ONE";
+    public static final String EXTRA_KEY_GAME_PLAYER_NAME_TWO = "EXTRA_KEY_GAME_PLAYER_NAME_TWO";
     private GameManager game = new GameManager();
     private RetrieveData retrieveData;
     private TextView game_LBL_score_one;
@@ -27,6 +29,8 @@ public class GameActivity extends Activity_Base {
     private ImageView game_IMG_card_two;
     private ImageView game_IMG_play_button;
     private TextView game_LBL_round;
+    private TextView game_LBL_boyName;
+    private TextView game_LBL_girlName;
     private ProgressBar game_PRB_progressBar;
     private Timer carousalTimer;
     private boolean flag = false;
@@ -43,6 +47,14 @@ public class GameActivity extends Activity_Base {
 
         glide(GameActivity.this, "img_deck", game_IMG_card_one);
         glide(GameActivity.this, "img_deck", game_IMG_card_two);
+
+        String namePlayerOne = getIntent().getStringExtra(EXTRA_KEY_GAME_PLAYER_NAME_ONE);
+        game_LBL_boyName.setText(namePlayerOne);
+
+        String namePlayerTwo = getIntent().getStringExtra(EXTRA_KEY_GAME_PLAYER_NAME_TWO);
+        game_LBL_girlName.setText(namePlayerTwo);
+
+        game.initGame(namePlayerOne,namePlayerTwo);
 
         game_IMG_play_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +111,8 @@ public class GameActivity extends Activity_Base {
         if(retrieveData.getWinner() == null){
             mySound.playSound(this);
             progressBar();
-            game_LBL_score_one.setText("" + retrieveData.getPlayer1Score());
-            game_LBL_score_two.setText("" + retrieveData.getPlayer2Score());
+            game_LBL_score_one.setText("" + retrieveData.getPlayer1().getScore());
+            game_LBL_score_two.setText("" + retrieveData.getPlayer2().getScore());
 
             //TODO Fix blinking image glide
             glide(GameActivity.this, retrieveData.getPlayer1ImgIconName(), game_IMG_card_one);
@@ -127,6 +139,8 @@ public class GameActivity extends Activity_Base {
         game_IMG_play_button = findViewById(R.id.game_IMG_play_button);
         game_PRB_progressBar = findViewById(R.id.game_PRB_progressBar);
         game_LBL_round = findViewById(R.id.game_LBL_round);
+        game_LBL_boyName = findViewById(R.id.game_LBL_boyName);
+        game_LBL_girlName = findViewById(R.id.game_LBL_girlName);
 
     }
 
