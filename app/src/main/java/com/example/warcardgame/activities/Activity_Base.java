@@ -63,12 +63,12 @@ public class Activity_Base extends AppCompatActivity {
         Intent intent = new Intent(context, newActivity);
         switch (moveActivity){
             case WINNER:
-                Log.d("aaaaaaaaaaaa", "moveBetweenActivity: " + retrieveData.getWinner().getPlayer().getName());
-                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, retrieveData.getWinner().getPlayer().getName());
-                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, retrieveData.getWinner().getPlayer().getScore());
+                Log.d("aaaaaaaaaaaa", "moveBetweenActivity: " + retrieveData.getWinnerPlayer().getPlayerName());
+                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, retrieveData.getWinnerPlayer().getPlayerName());
+                intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, retrieveData.getWinnerPlayer().getScore());
                 break;
             case DRAW:
-                intent.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE, retrieveData.getWinner().getPlayer().getScore());
+                intent.putExtra(DrawActivity.EXTRA_KEY_DRAW_SCORE, retrieveData.getWinnerPlayer().getScore());
                 break;
             case GAME:
                 intent.putExtra(GameActivity.EXTRA_KEY_GAME_PLAYER_NAME_ONE, retrieveData.getPlayer1().getName());

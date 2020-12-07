@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">War Card Game</string>
-    <string name="name_hint_one">Enter player one name</string>
-    <string name="name_hint_two">Enter player two name</string>
+    <string name="name_hint_boy">Enter boy name</string>
+    <string name="name_hint_girl">Enter girl name</string>
     <string name="enter_name">Please enter your name</string>
+    <string name="user_object">User</string>
 </resources>

@@ -5,14 +5,15 @@ import android.util.Log;
 import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.objects.Deck;
 import com.example.warcardgame.objects.Hand;
+import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.Player;
 import com.example.warcardgame.objects.RetrieveData;
-import com.example.warcardgame.objects.Winner;
+import com.example.warcardgame.objects.WinnerPlayer;
 
 public class GameManager {
     private Player player1;
     private Player player2;
-    private Winner winner;
+    private RetrieveData retrieveData = new RetrieveData();
 
     public GameManager() {
 
@@ -45,29 +46,20 @@ public class GameManager {
         this.player2 = player2;
     }
 
-    public Winner getWinner() {
-        return winner;
-    }
-
-    public void setWinner(Winner winner) {
-        this.winner = winner;
-    }
 
     public RetrieveData gameStep(){
         if(!player1.getHand().isEmpty()){
             Card[] cards = getTwoCardsFromPlayers();
             Log.d("test",  " " + player1.getHand().getCardsInHand().size());
             compareAndUpdateScore(cards);
-            RetrieveData retrieveData = new RetrieveData(cards[0].getImgIconName(),
-                    cards[1].getImgIconName(),
-                    player1,
-                    player2);
-            return retrieveData;
+            retrieveData.setPlayer1ImgIconName(cards[0].getImgIconName());
+            retrieveData.setPlayer2ImgIconName(cards[1].getImgIconName());
+            retrieveData.setPlayer1(player1);
+            retrieveData.setPlayer2(player2);
         }else {
-            winner = checkWinner();
-            RetrieveData retrieveData = new RetrieveData(winner);
-            return retrieveData;
+            retrieveData.setWinnerPlayer(checkWinner());
         }
+        return retrieveData;
     }
 
 
@@ -87,16 +79,16 @@ public class GameManager {
             player2.setScore(1);
     }
 
-    public Winner checkWinner(){
+
+    public WinnerPlayer checkWinner() {
         //Player 1 winner
-        if(player1.getScore() > player2.getScore()){
-            return new Winner(player1);
+        if (player1.getScore() > player2.getScore()) {
+            return new WinnerPlayer(player1.getName(),player1.getScore(), MoveActivity.WINNER);
             //Player 2 winner
-        }else if(player1.getScore() < player2.getScore()){
-            return new Winner(player2);
-        //Draw
+        } else if(player1.getScore() < player2.getScore()){
+            return new WinnerPlayer(player2.getName(),player2.getScore(), MoveActivity.WINNER);
         }else
-            return new Winner(player1,player2);
+            return new WinnerPlayer(player1.getName(),player1.getScore(), MoveActivity.DRAW);
     }
 
 }

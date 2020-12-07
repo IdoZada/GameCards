@@ -1,6 +1,7 @@
 package com.example.warcardgame.activities;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,15 +16,20 @@ import com.example.warcardgame.R;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.Player;
 import com.example.warcardgame.objects.RetrieveData;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
+import java.util.Date;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-public class MainActivity extends Activity_Base {
+public class MainActivity extends Activity_Base  {
     private ImageView main_IMG_deck_background;
     private Button main_BTN_start_game;
     private Button game_BTN_exit;
     private Button game_BTN_top_ten;
     private EditText main_EDT_playerName1;
     private EditText main_EDT_playerName2;
+    private Location userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,13 @@ public class MainActivity extends Activity_Base {
         game_BTN_top_ten = findViewById(R.id.game_BTN_top_ten);
         main_EDT_playerName1 = findViewById(R.id.main_EDT_playerName1);
         main_EDT_playerName2 = findViewById(R.id.main_EDT_playerName2);
+
+        requestPermission();
+        //accessClientLocation();
+        CharSequence date = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm:ss", new Date());
+        Log.d("test", "Date " + date.toString());
+
+        //Log.d("rrtt", "lat: " + userLocation.getLatitude() + "longi" + userLocation.getLongitude());
 
         glide(this,"img_deck_table",main_IMG_deck_background);
 
@@ -73,22 +86,21 @@ public class MainActivity extends Activity_Base {
                 closeActivity(MainActivity.this);
             }
         });
-
-        requestPermission();
     }
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
     }
 
-/*    private void accessClientLocation() {
+    private void accessClientLocation() {
         FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
         ActivityCompat.checkSelfPermission(MainActivity.this, ACCESS_FINE_LOCATION);
         client.getLastLocation().addOnSuccessListener(MainActivity.this, location -> {
             if (location != null)
                 userLocation = location;
+            Log.d("rrrr", "lat: " + userLocation.getLatitude() + "longi" + userLocation.getLongitude());
         });
-    }*/
+    }
 
     @Override
     protected void onResume() {

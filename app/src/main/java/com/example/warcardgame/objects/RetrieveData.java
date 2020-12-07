@@ -5,13 +5,13 @@ public class RetrieveData {
     private String player2ImgIconName;
     private Player player1;
     private Player player2;
-    private Winner winner = null;
+    private WinnerPlayer winner = null;
 
     public RetrieveData() {
 
     }
 
-    public RetrieveData(Winner winner) {
+    public RetrieveData(WinnerPlayer winner) {
         this.winner = winner;
     }
 
@@ -47,11 +47,19 @@ public class RetrieveData {
     }
 
 
-    public Winner getWinner() {
+    public WinnerPlayer getWinnerPlayer() {
         return winner;
     }
 
-    public void setWinner(Winner winner) {
+    public void setPlayer1ImgIconName(String player1ImgIconName) {
+        this.player1ImgIconName = player1ImgIconName;
+    }
+
+    public void setPlayer2ImgIconName(String player2ImgIconName) {
+        this.player2ImgIconName = player2ImgIconName;
+    }
+
+    public void setWinnerPlayer(WinnerPlayer winner) {
         this.winner = winner;
     }
 

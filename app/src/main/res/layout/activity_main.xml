@@ -13,7 +13,6 @@
       android:layout_height="match_parent"
       android:scaleType="fitXY"
       android:src="@drawable/img_deck_table">
-
   </ImageView>
 
   <LinearLayout
@@ -23,13 +22,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_weight="1"
+          android:layout_weight="2"
           android:orientation="vertical">
 
         <TextView
@@ -40,55 +39,51 @@
             android:gravity="center"
             android:text="War Game"
             android:textColor="@color/black"
-            android:textSize="40sp"
+            android:textSize="50sp"
             android:textStyle="bold"></TextView>
-
-
       </LinearLayout>
-
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_marginHorizontal="200dp"
-          android:layout_weight="1"
-          android:orientation="vertical">
+          android:layout_weight="3"
+          android:gravity="center"
+          android:orientation="horizontal">
 
         <EditText
             android:id="@+id/main_EDT_playerName1"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:padding="7dp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/button_round"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="5dp"
             android:fontFamily="@font/font_thebomb"
-            android:hint="@string/name_hint_one"
+            android:hint="@string/name_hint_boy"
+            android:padding="7dp"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"></EditText>
 
         <EditText
             android:id="@+id/main_EDT_playerName2"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:padding="7dp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/button_round"
+            android:backgroundTint="@color/white"
+            android:layout_marginLeft="5dp"
             android:fontFamily="@font/font_thebomb"
-            android:hint="@string/name_hint_two"
+            android:hint="@string/name_hint_girl"
+            android:padding="7dp"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"></EditText>
-
 
       </LinearLayout>
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_weight="1"
+          android:layout_weight="2"
           android:orientation="horizontal">
 
         <LinearLayout
@@ -110,7 +105,6 @@
               android:textAllCaps="false"
               android:textColor="@color/black"
               android:textSize="15sp">
-
           </Button>
 
           <Button
@@ -126,7 +120,6 @@
               android:textAllCaps="false"
               android:textColor="@color/black"
               android:textSize="15sp">
-
           </Button>
 
           <Button
@@ -142,23 +135,10 @@
               android:textAllCaps="false"
               android:textColor="@color/black"
               android:textSize="15sp">
-
           </Button>
 
-
         </LinearLayout>
-
-
       </LinearLayout>
-
     </LinearLayout>
-
   </LinearLayout>
-
-
-  
-
-
-
-
 </RelativeLayout>

@@ -108,7 +108,7 @@ public class GameActivity extends Activity_Base {
 
     private void displayManagerActivity(){
         retrieveData = game.gameStep();
-        if(retrieveData.getWinner() == null){
+        if(retrieveData.getWinnerPlayer() == null){
             mySound.playSound(this);
             progressBar();
             game_LBL_score_one.setText("" + retrieveData.getPlayer1().getScore());
@@ -120,7 +120,7 @@ public class GameActivity extends Activity_Base {
 
         }else{
             Intent intent;
-            if(retrieveData.getWinner().getMoveActivity() == MoveActivity.WINNER) {
+            if(retrieveData.getWinnerPlayer().getMoveActivity() == MoveActivity.WINNER ) {
                 intent = moveBetweenActivity(GameActivity.this, WinnerActivity.class, retrieveData, MoveActivity.WINNER);
             }else{
                 intent = moveBetweenActivity(GameActivity.this, DrawActivity.class, retrieveData, MoveActivity.DRAW);
@@ -165,4 +165,5 @@ public class GameActivity extends Activity_Base {
         game_PRB_progressBar.setProgress(progressStatus);
         game_LBL_round.setText("Round " + progressStatus);
     }
+
 }
