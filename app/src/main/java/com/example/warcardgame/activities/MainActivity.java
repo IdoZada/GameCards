@@ -29,7 +29,7 @@ public class MainActivity extends Activity_Base  {
     private Button game_BTN_top_ten;
     private EditText main_EDT_playerName1;
     private EditText main_EDT_playerName2;
-    private Location userLocation;
+    //private Location userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +44,12 @@ public class MainActivity extends Activity_Base  {
         main_EDT_playerName2 = findViewById(R.id.main_EDT_playerName2);
 
         requestPermission();
-        //accessClientLocation();
-        CharSequence date = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm:ss", new Date());
-        Log.d("test", "Date " + date.toString());
-
-        //Log.d("rrtt", "lat: " + userLocation.getLatitude() + "longi" + userLocation.getLongitude());
 
         glide(this,"img_deck_table",main_IMG_deck_background);
 
         main_BTN_start_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                double longtitute = 36.8;
-//                double latitude = 42.3;
-//                String namePlayer = "dddd";
-                //RetrieveData retrieveData = new RetrieveData("","",new Player())
                 if(main_EDT_playerName1.getText().toString().trim().length() > 0 && main_EDT_playerName2.getText().toString().trim().length() > 0){
                     RetrieveData retrieveData = new RetrieveData();
                     retrieveData.setPlayer1(new Player(main_EDT_playerName1.getText().toString(),null));
@@ -68,7 +59,6 @@ public class MainActivity extends Activity_Base  {
                 }else{
                     Toast.makeText(MainActivity.this, R.string.enter_name, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -92,15 +82,6 @@ public class MainActivity extends Activity_Base  {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
     }
 
-    private void accessClientLocation() {
-        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-        ActivityCompat.checkSelfPermission(MainActivity.this, ACCESS_FINE_LOCATION);
-        client.getLastLocation().addOnSuccessListener(MainActivity.this, location -> {
-            if (location != null)
-                userLocation = location;
-            Log.d("rrrr", "lat: " + userLocation.getLatitude() + "longi" + userLocation.getLongitude());
-        });
-    }
 
     @Override
     protected void onResume() {

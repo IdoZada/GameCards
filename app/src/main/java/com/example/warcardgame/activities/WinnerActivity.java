@@ -46,6 +46,8 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class WinnerActivity extends Activity_Base {
     public static final String EXTRA_KEY_WINNER_NAME = "EXTRA_KEY_WINNER_NAME";
     public static final String EXTRA_KEY_WINNER_SCORE = "EXTRA_KEY_WINNER_SCORE";
+    public static final double AFEKA_LONGITUDE = 34.817816499999935;
+    public static final double AFEKA_LATITUDE = 32.1133371;
     private Button winner_BTN_close;
     private Button winner_BTN_topTen;
     private TextView winner_LBL_playerName;
@@ -56,6 +58,7 @@ public class WinnerActivity extends Activity_Base {
     private String winnerName;
     private int winnerScore;
     private ArrayList<WinnerPlayer> list = new ArrayList<>();
+    private Location userLocation;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -64,6 +67,7 @@ public class WinnerActivity extends Activity_Base {
         setContentView(R.layout.activity_winner);
 
         findViews();
+        accessClientLocation();
 
         winner_BTN_topTen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,26 +84,18 @@ public class WinnerActivity extends Activity_Base {
                 closeActivity(WinnerActivity.this);
             }
         });
-
         winnerName = getIntent().getStringExtra(EXTRA_KEY_WINNER_NAME);
         winner_LBL_playerName.setText(winnerName);
-
         winnerScore = getIntent().getIntExtra(EXTRA_KEY_WINNER_SCORE, -1);
         winner_LBL_score.setText("" + winnerScore);
 
         createNewRecord();
+    }
 
-        if (this != null) {
-            MySP shared = new MySP(this);
-            list = shared.readDataFromStorage();
-        }
-
-        for (int i = 0; i < list.size(); i++) {
-            Log.d("list", "player name: " + list.get(i).getPlayerName() + "score: " + list.get(i).getScore() + "lat: " + list.get(i).getLatitude() + "long: " + list.get(i).getLongitude() + "date:" + list.get(i).getDate() + "\n");
-        }
-
-
-
+    private void setDefaultLocation() {
+        userLocation = new Location(getString(R.string.provider));
+        userLocation.setLatitude(AFEKA_LATITUDE);
+        userLocation.setLongitude(AFEKA_LONGITUDE);
     }
 
 
@@ -113,7 +109,7 @@ public class WinnerActivity extends Activity_Base {
         super.onPause();
     }
 
-    private void findViews(){
+    private void findViews() {
         winner_BTN_close = findViewById(R.id.winner_BTN_close);
         winner_LBL_playerName = findViewById(R.id.winner_LBL_playerName);
         winner_LBL_score = findViewById(R.id.winner_LBL_score);
@@ -122,31 +118,37 @@ public class WinnerActivity extends Activity_Base {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void createNewRecord(){
+    private void createNewRecord() {
         winnerPlayer = new WinnerPlayer();
         winnerPlayer.setPlayerName(winnerName);
         winnerPlayer.setScore(winnerScore);
-        winnerPlayer.setLatitude(lat);
-        winnerPlayer.setLongitude(lon);
+//        winnerPlayer.setLatitude(lat);
+//        winnerPlayer.setLongitude(lon);
+
+
+//        if (userLocation == null) {
+//            setDefaultLocation();
+//        }
+
         winnerPlayer.setDate(DateFormat.format("dd-MM-yyyy HH:mm:ss a", new Date()).toString());
 
         MySP prefs = new MySP(getApplicationContext());
-        prefs.add(winnerPlayer, (u,v)-> {
+        prefs.add(winnerPlayer, (u, v) -> {
             if (u.getScore() == v.getScore())
                 return 0;
             return u.getScore() < v.getScore() ? 1 : -1;
         });
     }
 
-//    private void accessClientLocation() {
-//        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-//        ActivityCompat.checkSelfPermission(WinnerActivity.this, ACCESS_FINE_LOCATION);
-//        client.getLastLocation().addOnSuccessListener(WinnerActivity.this, location -> {
-//            if (location != null)
-//                Log.d("yyyy", "accessClientLocation: hi ");
-//                userLocation = location;
-//                Log.d("yyyy", "accessClientLocation: hey");
-//        });
-//    }
+    
+
+    private void accessClientLocation() {
+        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
+        ActivityCompat.checkSelfPermission(WinnerActivity.this, ACCESS_FINE_LOCATION);
+        client.getLastLocation().addOnSuccessListener(WinnerActivity.this, location -> {
+            if (location != null)
+                userLocation = location;
+        });
+    }
 
 }

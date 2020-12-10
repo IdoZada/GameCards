@@ -33,23 +33,23 @@ public class MySP {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void add(WinnerPlayer gameUser, Comparator<WinnerPlayer> comparator) {
+    public void add(WinnerPlayer winnerPlayer, Comparator<WinnerPlayer> comparator) {
         list = readDataFromStorage();
-        if (!list.contains(gameUser)) {
+        if (!list.contains(winnerPlayer)) {
             if (list.size() < MAX_HIGH_SCORE_LENGTH) {
-                list.add(gameUser);
+                list.add(winnerPlayer);
                 list.sort(comparator);
                 writeDataToStorage(list);
-            } else if (gameUser.getScore() > list.get(list.size() - 1).getScore()) {
-                list.set(list.size() - 1, gameUser);
+            } else if (winnerPlayer.getScore() > list.get(list.size() - 1).getScore()) {
+                list.set(list.size() - 1, winnerPlayer);
                 list.sort(comparator);
                 writeDataToStorage(list);
             }
         } else {
-            int idx = list.indexOf(gameUser);
+            int idx = list.indexOf(winnerPlayer);
             WinnerPlayer currentUser = list.get(idx);
-            if (currentUser.getScore() < gameUser.getScore()) {
-                list.set(idx, gameUser);
+            if (currentUser.getScore() < winnerPlayer.getScore()) {
+                list.set(idx, winnerPlayer);
                 list.sort(comparator);
                 writeDataToStorage(list);
             }
