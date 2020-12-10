@@ -98,7 +98,6 @@ public class WinnerActivity extends Activity_Base {
         userLocation.setLongitude(AFEKA_LONGITUDE);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -115,7 +114,6 @@ public class WinnerActivity extends Activity_Base {
         winner_LBL_score = findViewById(R.id.winner_LBL_score);
         winner_BTN_topTen = findViewById(R.id.winner_BTN_topTen);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void createNewRecord() {
@@ -139,8 +137,6 @@ public class WinnerActivity extends Activity_Base {
             return u.getScore() < v.getScore() ? 1 : -1;
         });
     }
-
-    
 
     private void accessClientLocation() {
         FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
