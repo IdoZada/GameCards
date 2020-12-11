@@ -52,6 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.item_LBL_name.setText(currentWinnerPlayerItem.getPlayerName());
         holder.item_LBL_score.setText("" + currentWinnerPlayerItem.getScore());
         holder.item_LBL_date.setText(currentWinnerPlayerItem.getDate());
+        position += 1;
+        holder.item_LBL_id.setText(" " + position);
     }
 
     @Override

@@ -24,6 +24,7 @@ import androidx.core.app.ActivityCompat;
 
 
 import com.example.warcardgame.R;
+import com.example.warcardgame.objects.GpsTracker;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.WinnerPlayer;
 
@@ -59,6 +60,7 @@ public class WinnerActivity extends Activity_Base {
     private int winnerScore;
     private ArrayList<WinnerPlayer> list = new ArrayList<>();
     private Location userLocation;
+    private GpsTracker gpsTracker;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -67,7 +69,6 @@ public class WinnerActivity extends Activity_Base {
         setContentView(R.layout.activity_winner);
 
         findViews();
-        accessClientLocation();
 
         winner_BTN_topTen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,12 +93,6 @@ public class WinnerActivity extends Activity_Base {
         createNewRecord();
     }
 
-    private void setDefaultLocation() {
-        userLocation = new Location(getString(R.string.provider));
-        userLocation.setLatitude(AFEKA_LATITUDE);
-        userLocation.setLongitude(AFEKA_LONGITUDE);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -120,15 +115,8 @@ public class WinnerActivity extends Activity_Base {
         winnerPlayer = new WinnerPlayer();
         winnerPlayer.setPlayerName(winnerName);
         winnerPlayer.setScore(winnerScore);
-//        winnerPlayer.setLatitude(lat);
-//        winnerPlayer.setLongitude(lon);
-
-
-//        if (userLocation == null) {
-//            setDefaultLocation();
-//        }
-
         winnerPlayer.setDate(DateFormat.format("dd-MM-yyyy HH:mm:ss a", new Date()).toString());
+        getLocation();
 
         MySP prefs = new MySP(getApplicationContext());
         prefs.add(winnerPlayer, (u, v) -> {
@@ -138,13 +126,14 @@ public class WinnerActivity extends Activity_Base {
         });
     }
 
-    private void accessClientLocation() {
-        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-        ActivityCompat.checkSelfPermission(WinnerActivity.this, ACCESS_FINE_LOCATION);
-        client.getLastLocation().addOnSuccessListener(WinnerActivity.this, location -> {
-            if (location != null)
-                userLocation = location;
-        });
+    public void getLocation(){
+        gpsTracker = new GpsTracker(WinnerActivity.this);
+        if(gpsTracker.canGetLocation()) {
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            winnerPlayer.setLongitude(longitude);
+            winnerPlayer.setLatitude(latitude);
+        }
     }
 
 }

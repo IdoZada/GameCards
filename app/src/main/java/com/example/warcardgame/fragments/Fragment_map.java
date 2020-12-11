@@ -1,6 +1,7 @@
 package com.example.warcardgame.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class Fragment_map extends Fragment implements OnMapReadyCallback {
 
     public void displayLocationOnMap(){
         if (userPassed != null) {
-            map.addMarker(new MarkerOptions().position(new LatLng(userPassed.getLatitude(), userPassed.getLongitude())).snippet("I hope to go there"));
+            map.addMarker(new MarkerOptions().position(new LatLng(userPassed.getLatitude(), userPassed.getLongitude())).title(userPassed.getPlayerName()));
             cameraPosition = CameraPosition.builder().target(new LatLng(userPassed.getLatitude(), userPassed.getLongitude())).zoom(16).bearing(0).tilt(45).build();
             // map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             CameraUpdate location = CameraUpdateFactory.newLatLngZoom(new LatLng(userPassed.getLatitude(),userPassed.getLongitude()), 15);
