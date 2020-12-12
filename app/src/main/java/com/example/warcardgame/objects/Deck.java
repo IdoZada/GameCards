@@ -10,6 +10,9 @@ public class Deck {
     private CardRank cardRank;
     private ArrayList<Card> deck;
 
+    /**
+     * This function calls a function that initializes a deck that holds an array of cards
+     */
     public Deck() {
         this.deck = new ArrayList<Card>();
         createNewDeck();
@@ -47,6 +50,9 @@ public class Deck {
         this.deck = deck;
     }
 
+    /**
+     * This function initializes a deck that holds an array of cards and shuffle the deck
+     */
     public void createNewDeck(){
         for (CardSuit cardSuit : CardSuit.values()) {
             for (CardRank cardRank : CardRank.values()) {

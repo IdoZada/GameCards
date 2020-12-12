@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
     android:layout_margin="5dp"
-    android:background="@color/my_yellow_color"
+    app:cardBackgroundColor="@color/my_gray_color"
     >
 
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="@drawable/button_round"
+        android:background="@drawable/yellow_button_round"
         android:backgroundTint="@color/my_yellow_color"
         >
 

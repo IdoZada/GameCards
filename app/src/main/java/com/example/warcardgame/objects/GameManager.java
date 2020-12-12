@@ -1,7 +1,6 @@
-package com.example.warcardgame;
+package com.example.warcardgame.objects;
 
 import android.util.Log;
-
 import com.example.warcardgame.objects.Card;
 import com.example.warcardgame.objects.Deck;
 import com.example.warcardgame.objects.Hand;
@@ -29,23 +28,6 @@ public class GameManager {
         player2 = new Player(playerNameTwo,hand2);
 
     }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
 
     public RetrieveData gameStep(){
         if(!player1.getHand().isEmpty()){

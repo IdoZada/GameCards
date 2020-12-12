@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.example.warcardgame.GameManager;
+import com.example.warcardgame.objects.GameManager;
 import com.example.warcardgame.R;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.RetrieveData;

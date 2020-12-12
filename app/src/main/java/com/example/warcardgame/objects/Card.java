@@ -11,6 +11,11 @@ public class Card {
 
     }
 
+    /**
+     * This function produces a card
+     * @param cardSuit The card symbol (HEART, CLUB, DIAMOND, SPADE)
+     * @param cardRank The card number (TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE)
+     */
     public Card(CardSuit cardSuit, CardRank cardRank) {
         this.cardSuit = cardSuit;
         this.cardRank = cardRank;
@@ -42,6 +47,10 @@ public class Card {
         this.value = value;
     }
 
+    /**
+     * This function gives a numerical value to any number of card
+     * @param cardRank The card number (TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE)
+     */
     public void setValueFromRank(CardRank cardRank){
         switch (cardRank){
             case TWO:
@@ -90,6 +99,11 @@ public class Card {
         return this.imgIconName;
     }
 
+    /**
+     * This function initializes each image to its exact name
+     * @param cardSuit  The card symbol (HEART, CLUB, DIAMOND, SPADE)
+     * @param cardRank  The card number (TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE)
+     */
     public void setImgIconName(CardSuit cardSuit, CardRank cardRank){
         if(cardSuit == CardSuit.HEART) {
             if (cardRank == CardRank.TWO) {

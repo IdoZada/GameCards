@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="casino_background">#000000</color>
     <color name="my_yellow_color">#FFEB3B</color>
+    <color name="my_gray_color">#454545</color>
 </resources>

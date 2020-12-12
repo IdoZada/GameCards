@@ -9,6 +9,11 @@ public class Player {
 
     }
 
+    /**
+     * This function initializes an Player
+     * @param name  Name of the player
+     * @param hand  A hand that contains a deck of cards
+     */
     public Player(String name, Hand hand) {
         this.name = name;
         this.hand = hand;

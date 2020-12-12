@@ -19,6 +19,12 @@ public class WinnerPlayer implements Comparable<WinnerPlayer> {
     public WinnerPlayer() {
     }
 
+    /**
+     * This function initializes a winning player
+     * @param playerName    Name of the winning player
+     * @param score The score of the winning player
+     * @param moveActivity  Which window to move to
+     */
     public WinnerPlayer(String playerName , int score, MoveActivity moveActivity) {
         this.playerName = playerName;
         this.score = score;
@@ -80,6 +86,11 @@ public class WinnerPlayer implements Comparable<WinnerPlayer> {
         return playerName.compareTo(o.playerName);
     }
 
+    /**
+     * This function checks whether the object is of the same type
+     * @param obj   Winner player type object
+     * @return  true or false
+     */
     @Override
     public boolean equals(@Nullable Object obj) {
         if (this == obj)
