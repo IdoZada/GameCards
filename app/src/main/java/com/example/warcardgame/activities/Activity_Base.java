@@ -3,12 +3,11 @@ package com.example.warcardgame.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.RetrieveData;
 import com.example.warcardgame.utils.MyScreenUtils;
@@ -29,27 +28,6 @@ public class Activity_Base extends AppCompatActivity {
         }
     }
 
-    protected boolean isDoubleBackPressToClose = false;
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
-
-    @Override
-    public void onBackPressed() {
-        if (isDoubleBackPressToClose) {
-            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-                super.onBackPressed();
-                return;
-            }
-            else {
-                Toast.makeText(this, "Tap back button again to exit", Toast.LENGTH_SHORT).show();
-            }
-
-            mBackPressed = System.currentTimeMillis();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
     /**
      * This function destroy the activity
      * @param activity receive the activity to close
@@ -58,12 +36,18 @@ public class Activity_Base extends AppCompatActivity {
         activity.finish();
     }
 
-    //TODO Create func that allow move to another activity
+    /**
+     * This function allow to move between various activities
+     * @param context context object
+     * @param newActivity The activity to which we want to move
+     * @param retrieveData Object that contain parameters of each player
+     * @param moveActivity Flag (WINNER|DRAW|GAME|DEFAULT)
+     * @return Intent object
+     */
     public static Intent moveBetweenActivity(Context context, Class newActivity , RetrieveData retrieveData, MoveActivity moveActivity){
         Intent intent = new Intent(context, newActivity);
         switch (moveActivity){
             case WINNER:
-                Log.d("aaaaaaaaaaaa", "moveBetweenActivity: " + retrieveData.getWinnerPlayer().getPlayerName());
                 intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_NAME, retrieveData.getWinnerPlayer().getPlayerName());
                 intent.putExtra(WinnerActivity.EXTRA_KEY_WINNER_SCORE, retrieveData.getWinnerPlayer().getScore());
                 break;
@@ -79,6 +63,12 @@ public class Activity_Base extends AppCompatActivity {
         return intent;
     }
 
+    /**
+     * This function allow to read image with glide library
+     * @param activity Current activity
+     * @param imageName Name of the image in drawable package
+     * @param view Sets the ImageView the resource will be loaded into
+     */
     public static void glide(Context activity, String imageName, ImageView view){
         Glide
                 .with(activity)
@@ -86,7 +76,13 @@ public class Activity_Base extends AppCompatActivity {
                 .into(view);
     }
 
-    public static int getResourceId(String imageName,Context activity){
-        return activity.getResources().getIdentifier(imageName,"drawable",activity.getPackageName());
+    /**
+     * This function get the resource id of the image that exiting in drawable folder
+     * @param imageName String of image name
+     * @param context context object
+     * @return a resource identifier for the given resource name
+     */
+    public static int getResourceId(String imageName,Context context){
+        return context.getResources().getIdentifier(imageName,"drawable",context.getPackageName());
     }
 }
