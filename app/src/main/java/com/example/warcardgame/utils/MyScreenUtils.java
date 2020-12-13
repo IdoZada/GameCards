@@ -1,15 +1,11 @@
 package com.example.warcardgame.utils;
 
-import android.app.Activity;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MyScreenUtils {
     public static void hideSystemUI(AppCompatActivity activity) {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE
         View decorView = activity.getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -25,8 +21,4 @@ public class MyScreenUtils {
                         | View.SYSTEM_UI_FLAG_LOW_PROFILE
         );
     }
-
-
-    //TODO Create method that allows to move between 2 activities
-
 }

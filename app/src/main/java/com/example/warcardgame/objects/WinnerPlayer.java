@@ -20,7 +20,7 @@ public class WinnerPlayer implements Comparable<WinnerPlayer> {
     }
 
     /**
-     * This function initializes a winning player
+     * This constructor initializes a winning player
      * @param playerName    Name of the winning player
      * @param score The score of the winning player
      * @param moveActivity  Which window to move to

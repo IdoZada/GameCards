@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.example.warcardgame.objects.GameManager;
 import com.example.warcardgame.R;
 import com.example.warcardgame.objects.MoveActivity;
@@ -85,7 +86,9 @@ public class GameActivity extends Activity_Base {
 
     }
 
-
+    /**
+     * This function start the game through play displayManagerActivity function that repeats every 1 seconds
+     */
     private void startGame() {
         carousalTimer = new Timer();
         carousalTimer.scheduleAtFixedRate(new TimerTask() {
@@ -102,19 +105,24 @@ public class GameActivity extends Activity_Base {
         }, 0L, DELAY);
     }
 
+    /**
+     * This function stop the game
+     */
     private void stopGame() {
         carousalTimer.cancel();
     }
 
+    /**
+     * This function update all parameters of every step of the game on the GameActivity
+     */
     private void displayManagerActivity(){
         retrieveData = game.gameStep();
         if(retrieveData.getWinnerPlayer() == null){
-            mySound.playSound(this);
+            mySound.playSound(this,false);
             progressBar();
             game_LBL_score_one.setText("" + retrieveData.getPlayer1().getScore());
             game_LBL_score_two.setText("" + retrieveData.getPlayer2().getScore());
 
-            //TODO Fix blinking image glide
             glide(GameActivity.this, retrieveData.getPlayer1ImgIconName(), game_IMG_card_one);
             glide(GameActivity.this, retrieveData.getPlayer2ImgIconName(), game_IMG_card_two);
 
@@ -141,29 +149,13 @@ public class GameActivity extends Activity_Base {
         game_LBL_round = findViewById(R.id.game_LBL_round);
         game_LBL_boyName = findViewById(R.id.game_LBL_boyName);
         game_LBL_girlName = findViewById(R.id.game_LBL_girlName);
-
     }
-
-//    private void progressBar(){
-//        new Thread(new Runnable() {
-//            public void run() {
-//                progressStatus += 1;
-//                // Update the progress bar and round text
-//                handler.post(new Runnable() {
-//                    public void run() {
-//                        main_PRB_progressBar.setProgress(progressStatus);
-//                        main_LBL_round.setText("Round " + progressStatus);
-//                    }
-//                });
-//            }
-//        }).start();
-//    }
-
+    /**
+     * This function update the progress bar and round text
+     */
     private void progressBar(){
         progressStatus += 1;
-        // Update the progress bar and round text
         game_PRB_progressBar.setProgress(progressStatus);
         game_LBL_round.setText("Round " + progressStatus);
     }
-
 }

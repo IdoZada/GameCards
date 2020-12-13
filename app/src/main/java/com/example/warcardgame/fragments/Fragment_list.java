@@ -27,9 +27,9 @@ public class Fragment_list extends Fragment {
     View view;
     private ArrayList<WinnerPlayer> list = new ArrayList<>();
     private RecyclerView recyclerView;
-    private FragmentHighScoreListener listener;
+    private FragmentTopTenListener listener;
 
-    public interface FragmentHighScoreListener {
+    public interface FragmentTopTenListener {
         void onGameUserInfoSent(WinnerPlayer user);
     }
 
@@ -44,7 +44,6 @@ public class Fragment_list extends Fragment {
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(exampleAdapter);
-
         return view;
     }
 
@@ -61,9 +60,9 @@ public class Fragment_list extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if( context instanceof FragmentHighScoreListener ){
+        if( context instanceof FragmentTopTenListener){
             // if our activity implements this interface
-            listener = (FragmentHighScoreListener ) context;
+            listener = (FragmentTopTenListener) context;
 
         }else{
             throw new RuntimeException(context.toString() + "must implements FragmentHighScoreListener");
@@ -84,6 +83,5 @@ public class Fragment_list extends Fragment {
 
     private void findViews(View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
-        //list_LBL_title = view.findViewById(R.id.list_LBL_title);
     }
 }

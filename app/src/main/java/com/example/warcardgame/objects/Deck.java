@@ -1,7 +1,5 @@
 package com.example.warcardgame.objects;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,7 +9,7 @@ public class Deck {
     private ArrayList<Card> deck;
 
     /**
-     * This function calls a function that initializes a deck that holds an array of cards
+     * This constructor calls a function that initializes a deck that holds an array of cards
      */
     public Deck() {
         this.deck = new ArrayList<Card>();

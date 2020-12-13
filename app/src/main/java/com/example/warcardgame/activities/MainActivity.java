@@ -1,27 +1,25 @@
 package com.example.warcardgame.activities;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.core.app.ActivityCompat;
 
 import com.example.warcardgame.R;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.Player;
 import com.example.warcardgame.objects.RetrieveData;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-
-import java.util.Date;
+import com.example.warcardgame.utils.MySoundUtils;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 public class MainActivity extends Activity_Base  {
     private ImageView main_IMG_deck_background;
     private Button main_BTN_start_game;
@@ -29,22 +27,18 @@ public class MainActivity extends Activity_Base  {
     private Button game_BTN_top_ten;
     private EditText main_EDT_playerName1;
     private EditText main_EDT_playerName2;
-    //private Location userLocation;
+    private MySoundUtils backgroundSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("adad", "onCreate: ");
         setContentView(R.layout.activity_main);
-        main_BTN_start_game = findViewById(R.id.main_BTN_start_game);
-        game_BTN_exit = findViewById(R.id.game_BTN_exit);
-        main_IMG_deck_background = findViewById(R.id.main_IMG_deck_background);
-        game_BTN_top_ten = findViewById(R.id.game_BTN_top_ten);
-        main_EDT_playerName1 = findViewById(R.id.main_EDT_playerName1);
-        main_EDT_playerName2 = findViewById(R.id.main_EDT_playerName2);
 
+        backgroundSound = new MySoundUtils(R.raw.snd_background);
+        backgroundSound.playSound(this,true);
+
+        findViews();
         requestPermission();
-
         glide(this,"img_deck_table",main_IMG_deck_background);
 
         main_BTN_start_game.setOnClickListener(new View.OnClickListener() {
@@ -78,38 +72,45 @@ public class MainActivity extends Activity_Base  {
         });
     }
 
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
-    }
-
-
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("adad", "onResume");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("adad", "onStart: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("adad", "onPause: ");
+        if (backgroundSound.getMp() != null) {
+            backgroundSound.getMp().start();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("adad", "onStop: ");
+        if (backgroundSound.getMp() != null) {
+            backgroundSound.getMp().pause();
+        }
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("adad", "onDestroy: ");
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (imm != null && view != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        return super.onTouchEvent(event);
+    }
+
+    /**
+     * This function request location permission from the user
+     */
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
+    }
+
+    public void findViews() {
+        main_BTN_start_game = findViewById(R.id.main_BTN_start_game);
+        game_BTN_exit = findViewById(R.id.game_BTN_exit);
+        main_IMG_deck_background = findViewById(R.id.main_IMG_deck_background);
+        game_BTN_top_ten = findViewById(R.id.game_BTN_top_ten);
+        main_EDT_playerName1 = findViewById(R.id.main_EDT_playerName1);
+        main_EDT_playerName2 = findViewById(R.id.main_EDT_playerName2);
     }
 }

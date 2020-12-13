@@ -17,8 +17,7 @@ public class DrawActivity extends Activity_Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
 
-        draw_BTN_close = findViewById(R.id.draw_BTN_close);
-        draw_LBL_score = findViewById(R.id.draw_LBL_score);
+        findViews();
 
         draw_BTN_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,11 +28,10 @@ public class DrawActivity extends Activity_Base {
 
         int scoreFromPreviousActivity = getIntent().getIntExtra(EXTRA_KEY_DRAW_SCORE,-1);
         draw_LBL_score.setText("" + scoreFromPreviousActivity);
-
     }
-    /**
-     * This function destroy the activity
-     */
-    private void closeActivity() { finish();
+
+    private void findViews(){
+        draw_BTN_close = findViewById(R.id.draw_BTN_close);
+        draw_LBL_score = findViewById(R.id.draw_LBL_score);
     }
 }

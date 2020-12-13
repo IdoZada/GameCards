@@ -15,7 +15,7 @@ import com.example.warcardgame.fragments.Fragment_list;
 import com.example.warcardgame.fragments.Fragment_map;
 import com.example.warcardgame.objects.WinnerPlayer;
 
-public class TopTenActivity extends Activity_Base implements Fragment_list.FragmentHighScoreListener {
+public class TopTenActivity extends Activity_Base implements Fragment_list.FragmentTopTenListener {
     private ImageView topTen_IMG_background;
     private FrameLayout topTen_LAY_list;
     private FrameLayout topTen_LAY_map;
@@ -30,6 +30,7 @@ public class TopTenActivity extends Activity_Base implements Fragment_list.Fragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
+
         findViews();
         glide(this,"img_deck_table",topTen_IMG_background);
 
@@ -41,19 +42,11 @@ public class TopTenActivity extends Activity_Base implements Fragment_list.Fragm
         });
 
         fragment_list = new Fragment_list();
-//        getSupportFragmentManager().beginTransaction().add(R.id.topTen_LAY_list,fragment_list).commit();
-//
         fragment_map = new Fragment_map();
-//        getSupportFragmentManager().beginTransaction().add(R.id.topTen_LAY_map,fragment_map).commit();
-
-
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.topTen_LAY_list, fragment_list).add(R.id.topTen_LAY_map, fragment_map);
         fragmentTransaction.commit();
-
-
-
     }
 
     @Override
@@ -66,17 +59,21 @@ public class TopTenActivity extends Activity_Base implements Fragment_list.Fragm
         super.onStop();
     }
 
+    /**
+     * This function communicate between fragments from TopTenActivity
+     * @param winnerPlayer wining player object
+     */
+    @Override
+    public void onGameUserInfoSent(WinnerPlayer winnerPlayer) {
+        fragment_map.getGameUserInfo(winnerPlayer);
+        fragment_map.displayLocationOnMap();
+    }
+
     private void findViews(){
         topTen_IMG_background = findViewById(R.id.topTen_IMG_background);
         topTen_LAY_list = findViewById(R.id.topTen_LAY_list);
         topTen_LAY_map = findViewById(R.id.topTen_LAY_map);
         topTen_BTN_close = findViewById(R.id.topTen_BTN_close);
 
-    }
-
-    @Override
-    public void onGameUserInfoSent(WinnerPlayer winnerPlayer) {
-        fragment_map.getGameUserInfo(winnerPlayer);
-        fragment_map.displayLocationOnMap();
     }
 }

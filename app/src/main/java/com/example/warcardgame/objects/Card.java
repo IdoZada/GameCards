@@ -12,7 +12,7 @@ public class Card {
     }
 
     /**
-     * This function produces a card
+     * This constructor produces a card
      * @param cardSuit The card symbol (HEART, CLUB, DIAMOND, SPADE)
      * @param cardRank The card number (TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE)
      */

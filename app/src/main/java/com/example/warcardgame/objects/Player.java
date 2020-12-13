@@ -10,7 +10,7 @@ public class Player {
     }
 
     /**
-     * This function initializes an Player
+     * This constructor initializes an Player
      * @param name  Name of the player
      * @param hand  A hand that contains a deck of cards
      */

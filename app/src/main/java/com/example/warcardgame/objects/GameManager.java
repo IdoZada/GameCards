@@ -1,13 +1,5 @@
 package com.example.warcardgame.objects;
 
-import android.util.Log;
-import com.example.warcardgame.objects.Card;
-import com.example.warcardgame.objects.Deck;
-import com.example.warcardgame.objects.Hand;
-import com.example.warcardgame.objects.MoveActivity;
-import com.example.warcardgame.objects.Player;
-import com.example.warcardgame.objects.RetrieveData;
-import com.example.warcardgame.objects.WinnerPlayer;
 
 public class GameManager {
     private Player player1;
@@ -17,6 +9,12 @@ public class GameManager {
     public GameManager() {
 
     }
+
+    /**
+     * This function initialize two players
+     * @param playerNameOne String name one
+     * @param playerNameTwo String name two
+     */
 
     public void initGame(String playerNameOne,String playerNameTwo){
         Deck deck = new Deck();
@@ -29,10 +27,13 @@ public class GameManager {
 
     }
 
+    /**
+     * This function performs one step of the game
+     * @return RetrieveDate object that contain parameters of each player
+     */
     public RetrieveData gameStep(){
         if(!player1.getHand().isEmpty()){
             Card[] cards = getTwoCardsFromPlayers();
-            Log.d("test",  " " + player1.getHand().getCardsInHand().size());
             compareAndUpdateScore(cards);
             retrieveData.setPlayer1ImgIconName(cards[0].getImgIconName());
             retrieveData.setPlayer2ImgIconName(cards[1].getImgIconName());
@@ -45,6 +46,11 @@ public class GameManager {
     }
 
 
+    /**
+     * This function get two cards from the hand (26 cards), initialize
+     * and remove them from the pack
+     * @return Array of two cards from two players
+     */
     public Card[] getTwoCardsFromPlayers(){
         Card[] cards = new Card[2];
         cards[0] = player1.getHand().getCardFromHand(0);
@@ -54,6 +60,11 @@ public class GameManager {
         return cards;
     }
 
+    /**
+     * This function compare between the value of 2 cards and
+     * update the score of the players
+     * @param cards Array of two cards from two players
+     */
     public void compareAndUpdateScore(Card[] cards){
         if(cards[0].getValue() > cards[1].getValue())
             player1.setScore(1);
@@ -61,7 +72,10 @@ public class GameManager {
             player2.setScore(1);
     }
 
-
+    /**
+     * This function check if the game end with wining (who is the winner) or draw
+     * @return WinnerPlayer
+     */
     public WinnerPlayer checkWinner() {
         //Player 1 winner
         if (player1.getScore() > player2.getScore()) {
@@ -72,5 +86,4 @@ public class GameManager {
         }else
             return new WinnerPlayer(player1.getName(),player1.getScore(), MoveActivity.DRAW);
     }
-
 }

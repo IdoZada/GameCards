@@ -1,44 +1,33 @@
 package com.example.warcardgame.activities;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.RequiresApi;
-
 
 import com.example.warcardgame.R;
 import com.example.warcardgame.objects.GpsTracker;
 import com.example.warcardgame.objects.MoveActivity;
 import com.example.warcardgame.objects.WinnerPlayer;
-
 import com.example.warcardgame.utils.MySP;
+import com.example.warcardgame.utils.MySoundUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
-
 
 public class WinnerActivity extends Activity_Base {
     public static final String EXTRA_KEY_WINNER_NAME = "EXTRA_KEY_WINNER_NAME";
     public static final String EXTRA_KEY_WINNER_SCORE = "EXTRA_KEY_WINNER_SCORE";
-    public static final double AFEKA_LONGITUDE = 34.817816499999935;
-    public static final double AFEKA_LATITUDE = 32.1133371;
     private Button winner_BTN_close;
     private Button winner_BTN_topTen;
     private TextView winner_LBL_playerName;
     private TextView winner_LBL_score;
     private WinnerPlayer winnerPlayer;
-    private double lat = 23.22222222;
-    private double lon = 30.23135569;
     private String winnerName;
     private int winnerScore;
-    private ArrayList<WinnerPlayer> list = new ArrayList<>();
-    private Location userLocation;
     private GpsTracker gpsTracker;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -47,6 +36,8 @@ public class WinnerActivity extends Activity_Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner);
 
+        MySoundUtils winnerSound = new MySoundUtils(R.raw.snd_winner);
+        winnerSound.playSound(this,false);
         findViews();
 
         winner_BTN_topTen.setOnClickListener(new View.OnClickListener() {
@@ -64,11 +55,11 @@ public class WinnerActivity extends Activity_Base {
                 closeActivity(WinnerActivity.this);
             }
         });
+
         winnerName = getIntent().getStringExtra(EXTRA_KEY_WINNER_NAME);
         winner_LBL_playerName.setText(winnerName);
         winnerScore = getIntent().getIntExtra(EXTRA_KEY_WINNER_SCORE, -1);
         winner_LBL_score.setText("" + winnerScore);
-
         createNewRecord();
     }
 
@@ -82,13 +73,9 @@ public class WinnerActivity extends Activity_Base {
         super.onPause();
     }
 
-    private void findViews() {
-        winner_BTN_close = findViewById(R.id.winner_BTN_close);
-        winner_LBL_playerName = findViewById(R.id.winner_LBL_playerName);
-        winner_LBL_score = findViewById(R.id.winner_LBL_score);
-        winner_BTN_topTen = findViewById(R.id.winner_BTN_topTen);
-    }
-
+    /**
+     * This function create new record of winner player and save it in shared preference
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void createNewRecord() {
         winnerPlayer = new WinnerPlayer();
@@ -105,6 +92,9 @@ public class WinnerActivity extends Activity_Base {
         });
     }
 
+    /**
+     * This function update the location of the winner player
+     */
     public void getLocation(){
         gpsTracker = new GpsTracker(WinnerActivity.this);
         if(gpsTracker.canGetLocation()) {
@@ -115,4 +105,10 @@ public class WinnerActivity extends Activity_Base {
         }
     }
 
+    private void findViews() {
+        winner_BTN_close = findViewById(R.id.winner_BTN_close);
+        winner_LBL_playerName = findViewById(R.id.winner_LBL_playerName);
+        winner_LBL_score = findViewById(R.id.winner_LBL_score);
+        winner_BTN_topTen = findViewById(R.id.winner_BTN_topTen);
+    }
 }

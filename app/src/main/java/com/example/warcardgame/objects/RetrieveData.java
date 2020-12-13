@@ -11,17 +11,6 @@ public class RetrieveData {
 
     }
 
-    public RetrieveData(WinnerPlayer winner) {
-        this.winner = winner;
-    }
-
-    public RetrieveData(String player1ImgIconName, String player2ImgIconName, Player player1, Player player2) {
-        this.player1ImgIconName = player1ImgIconName;
-        this.player2ImgIconName = player2ImgIconName;
-        this.player1 = player1;
-        this.player2 = player2;
-    }
-
     public Player getPlayer1() {
         return player1;
     }
@@ -46,7 +35,6 @@ public class RetrieveData {
         return player2ImgIconName;
     }
 
-
     public WinnerPlayer getWinnerPlayer() {
         return winner;
     }
@@ -62,6 +50,4 @@ public class RetrieveData {
     public void setWinnerPlayer(WinnerPlayer winner) {
         this.winner = winner;
     }
-
-
 }

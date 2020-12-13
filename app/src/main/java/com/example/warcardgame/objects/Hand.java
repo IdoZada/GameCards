@@ -7,20 +7,19 @@ import java.util.Spliterators;
 public class Hand {
     private ArrayList<Card> cardsInHand;
     private Deck deck;
-
     private boolean isEmpty = false;
 
+    public Hand(){
+
+    }
+
     /**
-     * This function initializes a hand holding a deck of cards
+     * This constructor initializes a hand holding a deck of cards
      * @param deck  pack of cards
      */
     public Hand(Deck deck) {
         this.cardsInHand = new ArrayList<Card>();
         this.deck = deck;
-    }
-
-    public Hand(){
-
     }
 
     public Hand(ArrayList<Card> cardsInHand) {
@@ -40,7 +39,7 @@ public class Hand {
     }
 
     /**
-     * This function splits a handful of cards that holds several cards
+     * This function splits a deck of cards to new hand that holds several cards
      * @param from Start index
      * @param to End index
      */
