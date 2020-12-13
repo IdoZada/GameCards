@@ -29,6 +29,7 @@ public class GameActivity extends Activity_Base {
     private TextView game_LBL_score_two;
     private ImageView game_IMG_card_two;
     private ImageView game_IMG_play_button;
+    private ImageView game_IMG_background;
     private TextView game_LBL_round;
     private TextView game_LBL_boyName;
     private TextView game_LBL_girlName;
@@ -46,6 +47,7 @@ public class GameActivity extends Activity_Base {
 
         findView();
 
+        glide(GameActivity.this,"img_background",game_IMG_background);
         glide(GameActivity.this, "img_deck", game_IMG_card_one);
         glide(GameActivity.this, "img_deck", game_IMG_card_two);
 
@@ -149,6 +151,7 @@ public class GameActivity extends Activity_Base {
         game_LBL_round = findViewById(R.id.game_LBL_round);
         game_LBL_boyName = findViewById(R.id.game_LBL_boyName);
         game_LBL_girlName = findViewById(R.id.game_LBL_girlName);
+        game_IMG_background = findViewById(R.id.game_IMG_background);
     }
     /**
      * This function update the progress bar and round text

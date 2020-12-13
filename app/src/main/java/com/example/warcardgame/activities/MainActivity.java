@@ -38,8 +38,8 @@ public class MainActivity extends Activity_Base  {
         backgroundSound.playSound(this,true);
 
         findViews();
-        requestPermission();
         glide(this,"img_deck_table",main_IMG_deck_background);
+        requestPermission();
 
         main_BTN_start_game.setOnClickListener(new View.OnClickListener() {
             @Override

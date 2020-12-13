@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
@@ -25,6 +26,7 @@ public class WinnerActivity extends Activity_Base {
     private Button winner_BTN_topTen;
     private TextView winner_LBL_playerName;
     private TextView winner_LBL_score;
+    private ImageView winner_IMG_background;
     private WinnerPlayer winnerPlayer;
     private String winnerName;
     private int winnerScore;
@@ -39,6 +41,7 @@ public class WinnerActivity extends Activity_Base {
         MySoundUtils winnerSound = new MySoundUtils(R.raw.snd_winner);
         winnerSound.playSound(this,false);
         findViews();
+        glide(this,"img_background",winner_IMG_background);
 
         winner_BTN_topTen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,5 +113,6 @@ public class WinnerActivity extends Activity_Base {
         winner_LBL_playerName = findViewById(R.id.winner_LBL_playerName);
         winner_LBL_score = findViewById(R.id.winner_LBL_score);
         winner_BTN_topTen = findViewById(R.id.winner_BTN_topTen);
+        winner_IMG_background = findViewById(R.id.winner_IMG_background);
     }
 }
